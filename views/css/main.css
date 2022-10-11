@@ -1,0 +1,42 @@
+body{
+	text-align: center !important;
+    background-color: #20202c;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+p{
+	margin-top: 20px;
+	font-size: 24px;
+}
+input{
+	text-align: center;
+}
+.mssg{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	background-color: red;
+}
+.header {
+	font-weight: bold;
+	color: white;
+}
+
+.body-div {
+	border-width:1px;
+	border-style:solid;
+	border-color:white;
+	border-radius: 55px;
+    margin: 160px;
+}
+
+span {
+	color: white;
+}
+
+a {
+	color: #4e5676;
+}

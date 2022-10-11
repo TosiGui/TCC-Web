@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+		<div class="container">
+			<h1 class="h1-info">Adicione aqui as informações solicitadas</h1>
+			<p>URL de conexão RTSP</p>
+			<textarea name="url" id="textDataUrl" placeholder="rtsp://user:password@ip:port/cam/realmonitor?channel=1&subtype=0"></textarea>
+			<p>Token privado IFTTT</p>
+			<textarea name="token" id="textDataToken" placeholder="My_Personal_Token"></textarea>
+		</div>		
+		<div class="container">
+			<p>Palavra Chave</p>
+			<textarea name="keyword" id="textData" placeholder="Type here something"></textarea>
+			<div class="qrCodeBx">
+				<img src="./default.png" id="qrCode">
+			</div>
+			<button id="qrGenerator">Generate QR Code</button>
+		</div>
+	<script>
+		var keyword = document.querySelector('#textData');
+		var url = document.querySelector('#textDataUrl');
+		var token = document.querySelector('#textDataToken');
+		var qrCode = document.querySelector('#qrCode');
+		var qrGenerator = document.querySelector('#qrGenerator');
+		var baseURL = "https://api.qrserver.com/v1/create-qr-code/"
+		qrGenerator.addEventListener('click',()=>{
+
+		const size = `350x350`
+			qrCode.src = `${baseURL}?/size=${size}&data=${keyword.value}`
+
+			if (keyword.value == "") {
+				qrCode.src = "./default.png"
+			}
+			
+			$.ajax({
+				type: 'POST',
+				url: '/qrCode',
+				data: {
+					keyword: keyword.value, 
+					url: url.value, 
+					token: token.value
+				},
+				dataType: "json",
+				success: function(response){
+					
+					},
+					error: function() {
+					}
+				});
+		})
+		
+	</script>
+	
+</body>
+</html>
