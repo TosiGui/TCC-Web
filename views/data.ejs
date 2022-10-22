@@ -23,13 +23,32 @@
 			</div>
 			<button id="qrGenerator">Generate QR Code</button>
 		</div>
+		<div class="container">
+			<h1 class="h1-info">Botão do Pânico</h1>
+			<p>Acionar Alexa de forma manual</p>
+			<button onclick="buttonPanicClick()" id="panicButton">Acionar</button>
+		</div>	
 	<script>
 		var keyword = document.querySelector('#textData');
 		var url = document.querySelector('#textDataUrl');
 		var token = document.querySelector('#textDataToken');
 		var qrCode = document.querySelector('#qrCode');
 		var qrGenerator = document.querySelector('#qrGenerator');
+		var panicButton = document.querySelector('#panicButton');
 		var baseURL = "https://api.qrserver.com/v1/create-qr-code/"
+		const buttonPanicClick = () => {
+			console.log('caiu aqui perlo menos');
+			$.ajax({
+				type: 'GET',
+				url: '/buttonPanic',
+				success: function(response) {
+						confirm("Ações sendo executadas");
+					},
+						error: function() {
+					}
+				});
+		};
+			
 		qrGenerator.addEventListener('click',()=>{
 
 		const size = `350x350`

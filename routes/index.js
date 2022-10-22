@@ -2,9 +2,20 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 let global = {};
+var axios = require('axios');
 
 router.get('/', function (req, res, next) {
 	return res.render('index.ejs');
+});
+
+router.get('/buttonPanic', function (req, res) {
+
+	const data = JSON.stringify({name: "sam"});
+	const options = {
+		headers: {"content-type": "application/json"}
+	}
+	axios.post("http://127.0.0.1:8000/webhook", data, options);
+	res.send('Função executada com sucesso');
 });
 
 router.post('/', function(req, res, next) {
